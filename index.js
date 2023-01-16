@@ -1,6 +1,10 @@
 require('dotenv').config();
 const { Console } = require('console');
 const request = require('request');
+const express = require('express');
+const app=express();
+
+
 
 const getToken = (url, callback) => {
     const options = {
@@ -57,14 +61,11 @@ const getSchedule = (schedule) => {
 
     request.get(scheduleOptions, (err, res, body) => {
         if (err) {
-            //return console.log(err);
         }
         const obj2 = JSON.parse(body);
         if (obj2.error == null) {
-            //for (let x in obj2){
-            //console.log(obj2.data);
+           
             for (let y in obj2.data.segments) {
-                //console.log(obj2.data.broadcaster_name);
                 const d = new Date(obj2.data.segments[y].start_time);
                 streamSchedule.push([obj2.data.segments[y].start_time, obj2.data.broadcaster_name]);
             }
@@ -85,10 +86,20 @@ setTimeout(() => {
 
 setTimeout(() => {
     streamSchedule.sort();
-    for (let x in streamSchedule) {
-        console.log(streamSchedule[x][1]);
-        console.log(new Date(streamSchedule[x][0]).toLocaleString('en-us', { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" }));
-        console.log("***")
-        console.log("***")
-    }
+
+    
 }, 1500)
+
+
+app.set("view engine", "ejs")
+
+
+app.get('/',  (request, response) => {
+
+    response.render('index', {s: streamSchedule})
+
+});
+
+
+
+app.listen(process.env.PORT || 3000);
