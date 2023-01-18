@@ -1,3 +1,4 @@
 # Twitch-Stream-Schedule
 A consolidated schedule of the streamers you follow
-[![streamschedules2.jpg](https://i.postimg.cc/vZHLLcYR/streamschedules2.jpg)](https://postimg.cc/vZHLLcYR)
+[![streamschedules3.jpg](https://i.postimg.cc/q0y5L1nm/streamschedules3.jpg)](https://postimg.cc/q0y5L1nm)
+[Color Pallete](https://lospec.com/palette-list/soapy-10)
