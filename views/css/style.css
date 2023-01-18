@@ -9,15 +9,15 @@ div.flex-container{
     display: flex; 
     flex-direction: row; 
     flex-wrap: wrap;  
-    border: 4px solid #ff82bd ;
+    border: 4px solid   #2ba4a6   ;
     color:  #2ba4a6  ;
     border-radius: 1%;
 }
 
 div.day{
     flex-basis: 20%; 
-    border:1px solid #ff82bd ;
-    background-color: #0d2147 ;
+    border:1px solid   #2ba4a6  ;
+    background-color: #192734 ;
     color:  #2ba4a6  ;
     font-weight:600;
 
@@ -32,33 +32,29 @@ div.day{
   }
 
 h1{
-    text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+    color:    #ff82bd    ;
 }
 h2{
-    color: #ff82bd ; 
+    color:    #ff82bd   ; 
     font-weight: bold;
     text-transform: uppercase;
     align-self: center;
 }
 h4{
-background-color:#ff82bd;
-color: #0d2147 ;
+background-color:  #2ba4a6  ;
+color: #192734 ;
+
 }
 table td{
-    border:none !important;
-}
-.table-striped tbody tr:nth-of-type(odd){
-    background-color:#0c6987 ;
-    color:  #ff82bd  ;
-    border:none !important;
-}
-.table-striped tbody tr:nth-of-type(even){
-    color:  #ff82bd  ;
-}
+    border-top:none!important;
+    color:  #ffffff  ;
+
+    border-bottom:1px solid #0c6987!important;}
+
 
 body{
-    color: #ff82bd   ;
-    background-color: #0d2147;
+    color: #ffffff   ;
+    background-color: #192734;
 }
