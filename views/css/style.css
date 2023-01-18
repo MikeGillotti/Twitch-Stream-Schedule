@@ -1,0 +1,64 @@
+div.flex-container{
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+ div.month{
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap;  
+    border: 4px solid #ff82bd ;
+    color:  #2ba4a6  ;
+    border-radius: 1%;
+}
+
+div.day{
+    flex-basis: 20%; 
+    border:1px solid #ff82bd ;
+    background-color: #0d2147 ;
+    color:  #2ba4a6  ;
+    font-weight:600;
+
+
+
+}
+
+@media (max-width: 1000px) {
+    div.day {
+      flex-basis: 50%;
+    }
+  }
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+h2{
+    color: #ff82bd ; 
+    font-weight: bold;
+    text-transform: uppercase;
+    align-self: center;
+}
+h4{
+background-color:#ff82bd;
+color: #0d2147 ;
+}
+table td{
+    border:none !important;
+}
+.table-striped tbody tr:nth-of-type(odd){
+    background-color:#0c6987 ;
+    color:  #ff82bd  ;
+    border:none !important;
+}
+.table-striped tbody tr:nth-of-type(even){
+    color:  #ff82bd  ;
+}
+
+body{
+    color: #ff82bd   ;
+    background-color: #0d2147;
+}

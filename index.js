@@ -4,7 +4,9 @@ const request = require('request');
 const express = require('express');
 const app=express();
 
+app.use("/views/css", express.static(__dirname + "/views/css"));
 
+  app.use(express.static("views"))
 
 const getToken = (url, callback) => {
     const options = {
@@ -61,13 +63,15 @@ const getSchedule = (schedule) => {
 
     request.get(scheduleOptions, (err, res, body) => {
         if (err) {
+            console.log(err)
         }
         const obj2 = JSON.parse(body);
         if (obj2.error == null) {
            
             for (let y in obj2.data.segments) {
+                const day= new Date(obj2.data.segments[y].start_time).getDate();
                 const d = new Date(obj2.data.segments[y].start_time);
-                streamSchedule.push([obj2.data.segments[y].start_time, obj2.data.broadcaster_name]);
+                streamSchedule.push([obj2.data.segments[y].start_time, obj2.data.broadcaster_name, day]);
             }
         }
         return streamSchedule;
@@ -86,7 +90,6 @@ setTimeout(() => {
 
 setTimeout(() => {
     streamSchedule.sort();
-
     
 }, 1500)
 
