@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="/css/style.css">       
+<title> Streamer Schedule</title>
 </head>
 
 <body id="body">
@@ -21,11 +22,39 @@
       <%=n+"'s"%>
      <% } %>
       Streamer Schedule</h1>
+
+     
+      
+      </script>
    
     <form action="/" method="GET" >
     <input name="name" type="text" placeholder="Your Twitch Name"> <button type="submit" id="user" class="btn btn-primary" >Submit</button>
-    </form>
+     </form>
   </div>
+
+
+
+ 
+     
+      
+<input name="timezone" type="hidden"></input>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+  
+  
+    $('form').append('<input name="timezone" type="hidden" value="' + Intl.DateTimeFormat().resolvedOptions().timeZone + '"></input>');
+  
+  
+</script>
+
+
+
+
+
+
 
   <div class="flex-container">
 
@@ -36,10 +65,11 @@
     let y=0;
     let z=0;
     for (let x=0; x<s.length; x++ ) { 
-        let streamDate=new Date(s[x][0]).toLocaleString('en-us', {day: "numeric"})
-        let streamMonth=new Date(s[x][0]).toLocaleString('en-us', {month: "long"})
-        let streamDay=new Date(s[x][0]).toLocaleString('en-us', { weekday: "long"})
-        let streamTime=new Date(s[x][0]).toLocaleString('en-us', { weekday: "long", day: "numeric"})
+        let streamDate=s[x][2]
+        let streamMonth=s[x][4]
+        let streamDay=s[x][5]
+
+
         
         const nth = function(d) {
   if (d > 3 && d < 21) return 'th';
@@ -99,7 +129,11 @@
           <tr>
             <td> <%= s[x][1] %></td>
 
-            <td> <%= new Date(s[x][0]).toLocaleString('en-us', { hour: "2-digit", minute: "2-digit" }) %></td>
+            <td> 
+              <%= s[x][3] %>
+             
+              
+              </td>
 
           </tr>
           <%

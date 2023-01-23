@@ -4,6 +4,7 @@ const request = require('request');
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer=require('multer');
+const moment=require('moment-timezone');
 const { resolve } = require('path');
 const app=express();
 const upload=multer();
@@ -108,7 +109,7 @@ const getFollow = async (x) => {
 
       streamSchedule=[];
 
-const getSchedule = async (f) => {
+const getSchedule = async (f, tz) => {
 
     
     
@@ -132,9 +133,13 @@ const getSchedule = async (f) => {
         if (obj2.error == null) {
            
             for (let y in obj2.data.segments) {
-                const day= new Date(obj2.data.segments[y].start_time).getDate();
-                const d = new Date(obj2.data.segments[y].start_time);
-                streamSchedule.push([obj2.data.segments[y].start_time, obj2.data.broadcaster_name, day])
+                
+                const m = moment.tz(obj2.data.segments[y].start_time, tz).format();
+                const t = moment.tz(obj2.data.segments[y].start_time, tz).format('LT');
+                const day= moment.tz(obj2.data.segments[y].start_time, tz).format('D');
+                const month= moment.tz(obj2.data.segments[y].start_time, tz).format('MMMM');
+                const dow= moment.tz(obj2.data.segments[y].start_time, tz).format('dddd');
+                streamSchedule.push([m, obj2.data.broadcaster_name, day, t, month, dow])
             }
         }
          resolve(streamSchedule.sort());
@@ -160,6 +165,7 @@ app.get('/favicon.ico', (request,response)=>{
 app.get('/',  (request, response) => {
 
     const name_id=request.query.name;
+    const tz=request.query.timezone;
 
     nameTwitch=name_id;
 
@@ -175,7 +181,7 @@ app.get('/',  (request, response) => {
      .then((Resolved)=>{
         getFollow(Resolved)
         .then((Resolved)=>{
-            getSchedule(Resolved)
+            getSchedule(Resolved, tz)
             .then((Resolved)=>{
                
                setTimeout(()=>{
